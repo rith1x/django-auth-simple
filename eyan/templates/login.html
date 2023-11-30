@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Power Fence</title>
+        <link rel="icon" href="image_processing20200508-28885-mw1csq.png">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <style>
+            .password-container {
+                position: relative;
+            }
+
+            #password {
+                padding-right: 30px;
+                /* Make room for the show/hide button */
+            }
+
+            .toggle-password {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                line-height: 1;
+                /* Adjust line height for better alignment */
+            }
+
+            @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+            *,
+            *:before,
+            *:after {
+                box-sizing: border-box;
+            }
+
+            body {
+                min-height: 100vh;
+                font-family: 'Raleway', sans-serif;
+            }
+
+            .container {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+
+                &:hover,
+                &:active {
+
+                    .top,
+                    .bottom {
+
+                        &:before,
+                        &:after {
+                            margin-left: 200px;
+                            transform-origin: -200px 50%;
+                            transition-delay: 0s;
+                        }
+                    }
+
+                    .center {
+                        opacity: 1;
+                        transition-delay: 0.2s;
+                    }
+                }
+            }
+
+            .top,
+            .bottom {
+
+                &:before,
+                &:after {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 200vmax;
+                    height: 200vmax;
+                    top: 50%;
+                    left: 50%;
+                    margin-top: -100vmax;
+                    transform-origin: 0 50%;
+                    transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+                    z-index: 10;
+                    opacity: 0.65;
+                    transition-delay: 0.2s;
+                }
+            }
+
+            .top {
+                &:before {
+                    transform: rotate(45deg);
+                    background: #1a5276;
+                    /* Darker blue shade */
+                }
+
+                &:after {
+                    transform: rotate(135deg);
+                    background: rgb(6, 81, 111)
+                        /* Darker black shade */
+                }
+            }
+
+            .bottom {
+                &:before {
+                    transform: rotate(-45deg);
+                    background: #0e3e54;
+                    /* Darker blue shade */
+                }
+
+                &:after {
+                    transform: rotate(-135deg);
+                    background: #1d1f2e;
+                    /* Darker black shade */
+                }
+            }
+
+
+
+            .background-image {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background-image: url('5a1.jpg');
+                background-size: cover;
+                background-position: center;
+                z-index: -1;
+            }
+
+            .center {
+                position: absolute;
+                width: 400px;
+                top: 50%;
+                left: 50%;
+                margin-left: -200px;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 30px;
+                background: transparent;
+                border-radius: 5px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                opacity: 0;
+                transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+                color: rgb(15, 164, 223);
+            }
+
+            h1 {
+                margin-bottom: 20px;
+                color: rgb(171, 223, 241);
+            }
+
+
+            .center input {
+                width: 100%;
+                padding: 12px;
+                box-sizing: border-box;
+                border: none;
+                border-bottom: 2px solid rgb(109, 203, 244);
+                font-size: 14px;
+                background-color: transparent;
+                outline: none;
+                color: whitesmoke;
+                /* Text color */
+            }
+
+
+
+            button {
+                margin-top: 10px;
+                background-color: #22b9f0;
+                color: #fff;
+                padding: 12px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                width: 100%;
+                font-size: 16px;
+                transition: background-color 0.3s;
+            }
+
+            button:hover {
+                background-color: rgb(4, 67, 83);
+            }
+
+            .forgot-password {
+                text-align: right;
+                margin-top: 10px;
+            }
+
+            .forgot-password a {
+                color: #7dc4f0;
+                text-decoration: none;
+            }
+
+            .forgot-password a:hover {
+                color: aliceblue;
+                text-decoration-line: underline;
+            }
+
+            .bottom-text {
+                text-align: center;
+                margin-top: 10px;
+            }
+
+            .bottom-text a {
+                color: #6faed8;
+                text-decoration: none;
+            }
+
+            .bottom-text a:hover {
+                color: whitesmoke;
+                text-decoration-line: underline;
+            }
+
+            body {
+                margin: 0;
+                overflow: hidden;
+                font-family: 'Arial', sans-serif;
+                /* You can change the font family if needed */
+            }
+
+
+            body {
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .container {
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            body {
+                margin: 0;
+                overflow: hidden;
+                background-color: #001f3f;
+                /* Dark Blue Background */
+            }
+
+            .background-image {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                background-image: url('5a1.jpg');
+                background-size: cover;
+                background-position: center;
+                z-index: -1;
+                animation: backgroundAnimation 60s linear infinite;
+            }
+
+            @keyframes backgroundAnimation {
+                0% {
+                    transform: translate(0, 0);
+                }
+
+                25% {
+                    transform: translate(5%, 5%);
+                }
+
+                50% {
+                    transform: translate(0, 0);
+                }
+
+                75% {
+                    transform: translate(-5%, -5%);
+                }
+
+                100% {
+                    transform: translate(0, 0);
+                }
+            }
+
+            @media only screen and (max-width: 600px) {
+                .input-container {
+                    position: static;
+                    text-align: center;
+                }
+
+                .button-container {
+                    flex-direction: column;
+                }
+            }
+        </style>
+
+
+        <div class="container" onclick="toggleAnimation()">
+            <div class="top"></div>
+            <div class="background-image"></div>
+            <div class="center">
+                <form action="/postSignIn/" method="POST">
+                    {% csrf_token %}
+                    <h1>Customer Login</h1>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">🔑</span>
+                    </div>
+
+                    <button type="submit">Login</button>
+                    <div class="forgot-password">
+                        <a href="">Forgot Password?</a>
+                    </div>
+                    <div class="bottom-text">
+                        Don't have an account? <a href="{% url 'signup' %}">Sign Up</a>
+                    </div>
+                </form>
+            </div>
+            <div class="bottom"></div>
+        </div>
+
+        <script>
+
+
+            function togglePasswordVisibility() {
+                var passwordInput = document.getElementById("password");
+                var toggleButton = document.querySelector(".toggle-password");
+
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    toggleButton.textContent = "🔓";
+                } else {
+                    passwordInput.type = "password";
+                    toggleButton.textContent = "🔑";
+                }
+            }
+
+
+        </script>
+
+    </body>
+
+</html>

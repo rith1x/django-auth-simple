@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign Up</title>
+        <link rel="icon" href="image_processing20200508-28885-mw1csq.png">
+        <link rel="stylesheet" href="style.css">
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+        <style>
+            .password-container {
+                position: relative;
+            }
+
+            #password {
+                padding-right: 30px;
+                /* Make room for the show/hide button */
+            }
+
+            .toggle-password {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="top"></div>
+            <div class="background-image"></div>
+            <div class="center">
+                <form action="/postSignUp/" method="post">
+                    {% csrf_token %}
+                    <h1>Create an Account</h1>
+                    <input type="text" id="fullName" name="name" placeholder="Full Name" required>
+                    <input type="email" id="signupEmail" name="email" placeholder="Email" required>
+
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                        <span class="toggle-password" onclick="togglePasswordVisibility()">🔑</span>
+                    </div>
+
+                    <button type="submit">Sign Up</button>
+
+                </form>
+                <div class="bottom-text">
+                    Already have an account? <a href="{% url 'login' %}">Login</a>
+
+
+                </div>
+            </div>
+            <div class="bottom"></div>
+        </div>
+
+        <script>
+            function togglePasswordVisibility() {
+                var passwordInput = document.getElementById("password");
+                var toggleButton = document.querySelector(".toggle-password");
+
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    toggleButton.textContent = "🔓";
+                } else {
+                    passwordInput.type = "password";
+                    toggleButton.textContent = "🔑";
+                }
+            }
+
+
+        </script>
+    </body>
+
+</html>
